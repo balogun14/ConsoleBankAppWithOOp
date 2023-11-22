@@ -13,12 +13,21 @@ namespace ConsoleBankApp
         public override int Age { get => age; set => age = value; }
         public override string LastName { get => lastName; set => lastName = value; }
         public override string Address { get => address; set => address = value; }
+        public decimal InitialBalance
+        {
+            set
+            {
+                balance = value;
+            }
+        }
 
         public decimal GetBalance()
         {
             return balance;
         }
-
+        private void NewBalance(){
+            Console.WriteLine($"You New Balance is\nBalance:{GetBalance()}");            
+        }
         public void PayInFunds()
         {
             Console.Write("How much do you want to pay in to the account: ");
@@ -27,13 +36,19 @@ namespace ConsoleBankApp
             {
                 balance += amount;
                 HelperFunctions.MessageWithColor("Successful");
+                NewBalance();
             }
             else
             {
                 HelperFunctions.MessageWithColor("Invalid Transaction", ConsoleColor.DarkRed);
             }
         }
+        public void DisplayDetails()
+        {
+            string message = $"Name: {FirstName}\nAddress:{Address}\nBalance:${GetBalance()}";
+            Console.WriteLine(message);
 
+        }
         public virtual void WithdrawFunds(decimal amount)
         {
 
@@ -44,7 +59,7 @@ namespace ConsoleBankApp
             }
             balance -= amount;
             HelperFunctions.MessageWithColor("Successful");
-            HelperFunctions.MessageWithColor($"your new balance is {GetBalance()}, you withdrew {amount} + charges{charges}");
+            HelperFunctions.MessageWithColor($"your new balance is ${GetBalance()}, you withdrew: ${amount} + charges: ${charges}");
 
         }
     }
