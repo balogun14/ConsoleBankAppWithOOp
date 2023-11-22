@@ -15,7 +15,7 @@ try
             Age = (int)age,
             InitialBalance = InputFunctions<int>.UserInput("What is your initial Balance")
         };
-        HelperFunctions.AdultAccountOperations(customerAccount);
+        OperationFunctions<CustomerAccount>.AccountOperations(customerAccount);
     }
     else
     {
@@ -27,7 +27,7 @@ try
             Age = (int)age,
             InitialBalance = InputFunctions<int>.UserInput("What is your initial Balance")
         };
-        HelperFunctions.AdultAccountOperations(babyAccount);
+        OperationFunctions<BabyAccount>.AccountOperations(babyAccount);
 
     }
 

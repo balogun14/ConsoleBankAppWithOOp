@@ -1,3 +1,5 @@
+using ConsoleBankApp;
+
 namespace ConsoleBankApp
 {
     public class HelperFunctions
@@ -34,13 +36,32 @@ namespace ConsoleBankApp
             ";
             Console.WriteLine(operationYoucanPerform);
         }
-        public static void AdultAccountOperations(CustomerAccount account)
+        
+        
+            
+        }
+
+    }
+    class InputFunctions<T>
+    {
+        public static T UserInput(string message)
+        {
+            Console.Write(message + ": ");
+            string value = Console.ReadLine()!;
+            T output = (T)Convert.ChangeType(value, typeof(T));
+            return output;
+
+        }
+    }
+    class OperationFunctions<T> where T : CustomerAccount
+    {
+        public static void AccountOperations(T account)
         {
             bool condition = true;
 
             while (condition)
             {
-                DashBoard();
+                HelperFunctions.DashBoard();
                 int choice = int.Parse(Console.ReadLine()!);
                 switch (choice)
                 {
@@ -56,49 +77,9 @@ namespace ConsoleBankApp
                         account.DisplayDetails();
                         break;
                     default:
-                        MessageWithColor("Option Not Available", ConsoleColor.DarkRed);
+                        HelperFunctions.MessageWithColor("Option Not Available", ConsoleColor.DarkRed);
                         break;
                 }
             }
         }
-        public static void BabyAccountOperations(BabyAccount account)
-        {
-            bool condition = true;
-
-            while (condition)
-            {
-                DashBoard();
-                int choice = int.Parse(Console.ReadLine()!);
-                switch (choice)
-                {
-                    case 1:
-                        account.PayInFunds();
-                        break;
-                    case 2:
-                        Console.Write("How much are you withdrawing: ");
-                        decimal amount = decimal.Parse(Console.ReadLine()!);
-                        account.WithdrawFunds(amount);
-                        break;
-                    case 3:
-                        account.DisplayDetails();
-                        break;
-                    default:
-                        MessageWithColor("Option Not Available", ConsoleColor.DarkRed);
-                        break;
-                }
-            }
-        }
-
     }
-    class InputFunctions<T>
-    {
-        public static T UserInput(string message)
-        {
-            Console.Write(message + ": ");
-            string value = Console.ReadLine()!;
-            T output = (T)Convert.ChangeType(value, typeof(T));
-            return output;
-
-        }
-    }
-}
