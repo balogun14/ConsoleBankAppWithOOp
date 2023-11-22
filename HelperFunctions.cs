@@ -4,7 +4,6 @@ namespace ConsoleBankApp
 {
     public class HelperFunctions
     {
-
         public static void MessageWithColor(string message, ConsoleColor consoleColor = ConsoleColor.Green)
         {
             Console.ForegroundColor = consoleColor;
@@ -36,12 +35,9 @@ namespace ConsoleBankApp
             ";
             Console.WriteLine(operationYoucanPerform);
         }
-        
-        
-            
-        }
-
+           }
     }
+    
     class InputFunctions<T>
     {
         public static T UserInput(string message)
@@ -53,6 +49,7 @@ namespace ConsoleBankApp
 
         }
     }
+    
     class OperationFunctions<T> where T : CustomerAccount
     {
         public static void AccountOperations(T account)
@@ -69,7 +66,7 @@ namespace ConsoleBankApp
                         account.PayInFunds();
                         break;
                     case 2:
-                        Console.Write("How muh are you withdrawing: ");
+                        Console.Write("How much are you withdrawing: ");
                         decimal amount = decimal.Parse(Console.ReadLine()!);
                         account.WithdrawFunds(amount);
                         break;
