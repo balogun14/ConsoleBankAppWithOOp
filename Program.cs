@@ -1,40 +1,30 @@
 ﻿using ConsoleBankApp;
 
-HelperFunctions.WelcomeMessage();
 try
 {
-    Console.Write("How old are you: ");
-    uint age = uint.Parse(Console.ReadLine()!);
-    if (age >= 18)
+    while (true)
     {
-        CustomerAccount customerAccount = new()
-        {
-            Address = InputFunctions<String>.UserInput("What is your address"),
-            FirstName = InputFunctions<String>.UserInput("What is your first name"),
-            LastName = InputFunctions<String>.UserInput("What is your last name"),
-            Age = (int)age,
-            InitialBalance = InputFunctions<int>.UserInput("What is your initial Balance")
-        };
-        OperationFunctions<CustomerAccount>.AccountOperations(customerAccount);
-    }
-    else
-    {
-        BabyAccount babyAccount = new()
-        {
-            Address = InputFunctions<String>.UserInput("What is your address"),
-            FirstName = InputFunctions<String>.UserInput("What is your first name"),
-            LastName = InputFunctions<String>.UserInput("What is your last name"),
-            Age = (int)age,
-            InitialBalance = InputFunctions<int>.UserInput("What is your initial Balance")
-        };
-        OperationFunctions<BabyAccount>.AccountOperations(babyAccount);
+        string dashboardMessage = "Welcome to the Bank.\nWhat can we do for you\n1.Create an Account.\n2.Login to your Account";
+        Console.WriteLine(dashboardMessage);
 
+        var UserChoice = InputFunctions<String>.UserInput("What is Your Option");
+        switch (UserChoice)
+        {
+            case "1":
+                NewAccountCreation.CreateNewAccount();
+                break;
+            case "2":
+                AccountLogin<CustomerAccount>.Login();
+                break;
+            default:
+                HelperFunctions.MessageWithColor("Read The Dashboard Message", ConsoleColor.DarkRed);
+                break;
+        }
     }
-
 
 }
+
 catch (Exception ex)
 {
-
     Console.WriteLine("An error Occured: " + ex.Message);
 }

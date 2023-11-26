@@ -2,12 +2,14 @@ namespace ConsoleBankApp
 {
     public class CustomerAccount : AccountClass, IAccount
     {
+        private ulong UniqueId = 0;
         private string firstName = default!;
         private string lastName = default!;
         private string address = default!;
         private readonly decimal charges = 20; //Bank changes which is 20 naira per transaction
         private int age;
         private decimal balance;
+        private string password = default!;
 
         public override string FirstName { get => firstName; set => firstName = value; }
         public override int Age { get => age; set => age = value; }
@@ -21,12 +23,18 @@ namespace ConsoleBankApp
             }
         }
 
+        public override string Password { get => password; set => password = value; }
+        public CustomerAccount()
+        {
+            UniqueId++;
+        }
         public decimal GetBalance()
         {
             return balance;
         }
-        private void NewBalance(){
-            Console.WriteLine($"You New Balance is\nBalance:{GetBalance()}");            
+        private void NewBalance()
+        {
+            Console.WriteLine($"You New Balance is\nBalance:{GetBalance()}");
         }
         public void PayInFunds()
         {
@@ -61,6 +69,16 @@ namespace ConsoleBankApp
             HelperFunctions.MessageWithColor("Successful");
             HelperFunctions.MessageWithColor($"your new balance is ${GetBalance()}, you withdrew: ${amount} + charges: ${charges}");
 
+        }
+
+        public ulong GetId()
+        {
+            return UniqueId;
+        }
+
+        public string GetName()
+        {
+            return FirstName;
         }
     }
 }

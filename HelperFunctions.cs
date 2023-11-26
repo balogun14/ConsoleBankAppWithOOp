@@ -31,8 +31,10 @@ namespace ConsoleBankApp
             string operationYoucanPerform = @"
             1. Deposit Funds.
             2. Withdrawl Funds.
-            3. Check Balance
-            4. Exit
+            3. Check Balance.
+            4. Create New Account
+            5. Log out
+            6. Exit
             ";
             Console.WriteLine(operationYoucanPerform);
         }
@@ -51,38 +53,38 @@ class InputFunctions<T>
     }
 }
 
-class OperationFunctions<T> where T : CustomerAccount
-{
-    public static void AccountOperations(T account)
-    {
-        bool condition = true;
+// class OperationFunctions<T> where T : CustomerAccount
+// {
+//     public static void AccountOperations(T account)
+//     {
+//         bool condition = true;
 
-        while (condition)
-        {
-            HelperFunctions.DashBoard();
-            int choice = int.Parse(Console.ReadLine()!);
-            switch (choice)
-            {
-                case 1:
-                    account.PayInFunds();
-                    break;
-                case 2:
-                    Console.Write("How much are you withdrawing: ");
-                    decimal amount = decimal.Parse(Console.ReadLine()!);
-                    account.WithdrawFunds(amount);
-                    break;
-                case 3:
-                    account.DisplayDetails();
-                    break;
-                case 4:
-                    HelperFunctions.MessageWithColor("You exited Succesfully");
-                    condition = false;
-                    break;
-                default:
-                    HelperFunctions.MessageWithColor("Option Not Available", ConsoleColor.DarkRed);
-                    break;
-            }
-            Console.Clear();
-        }
-    }
-}
+//         while (condition)
+//         {
+//             HelperFunctions.DashBoard();
+//             int choice = int.Parse(Console.ReadLine()!);
+//             switch (choice)
+//             {
+//                 case 1:
+//                     account.PayInFunds();
+//                     break;
+//                 case 2:
+//                     Console.Write("How much are you withdrawing: ");
+//                     decimal amount = decimal.Parse(Console.ReadLine()!);
+//                     account.WithdrawFunds(amount);
+//                     break;
+//                 case 3:
+//                     account.DisplayDetails();
+//                     break;
+//                 case 4:
+//                     HelperFunctions.MessageWithColor("You exited Succesfully");
+//                     condition = false;
+//                     break;
+//                 default:
+//                     HelperFunctions.MessageWithColor("Option Not Available", ConsoleColor.DarkRed);
+//                     break;
+//             }
+//            // Console.Clear();
+//         }
+//     }
+// }

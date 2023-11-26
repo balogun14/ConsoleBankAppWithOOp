@@ -6,5 +6,8 @@ namespace ConsoleBankApp
         public void PayInFunds();
         public decimal GetBalance();
 
+        public ulong GetId();
+        public string GetName();
+
     }
 }
