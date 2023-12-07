@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 namespace ConsoleBankApp
 {
     public class CustomerAccount : AccountClass, IAccount
@@ -11,9 +12,24 @@ namespace ConsoleBankApp
         private decimal balance;
         private string password = default!;
 
-        public override string FirstName { get => firstName; set => firstName = value; }
+        public override string FirstName
+        {
+            get => firstName;
+            set
+            {
+                string result = MatchName(value);
+                firstName = result;
+            }
+        }
         public override int Age { get => age; set => age = value; }
-        public override string LastName { get => lastName; set => lastName = value; }
+        public override string LastName
+        {
+            get => lastName; set
+            {
+                string result = MatchName(value);
+                lastName = result;
+            }
+        }
         public override string Address { get => address; set => address = value; }
         public decimal InitialBalance
         {
@@ -79,6 +95,47 @@ namespace ConsoleBankApp
         public string GetName()
         {
             return FirstName;
+        }
+        public string MatchName(string value)
+        {
+            string pattern = @"[0-9]";
+            MatchCollection match;
+            do
+            {
+                match = Regex.Matches(value, pattern);
+                if (match.Count == 0)
+                {
+                    Console.WriteLine("Success");
+
+                }
+                else
+                {
+                    HelperFunctions.MessageWithColor("Name cannot contain special characters like numbers e.t.c", ConsoleColor.DarkRed);
+                    Console.WriteLine("Enter the name again: ");
+                    value = Console.ReadLine()!;
+                }
+
+            } while (match.Count != 0);
+
+            return value;
+        }
+
+        public void ChangeUserPassword()
+        {
+            Console.WriteLine("What is your Previous Password: ");
+            var prevPassword = Console.ReadLine()!;
+            if (prevPassword == Password)
+            {
+                Console.WriteLine("What is your new Password: ");
+                var newPassword = Console.ReadLine()!;
+                var result = MatchName(newPassword);
+                Password = result;
+            }
+            else
+            {
+                Console.WriteLine("Incorrect Password");
+            }
+
         }
     }
 }

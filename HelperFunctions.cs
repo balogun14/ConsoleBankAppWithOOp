@@ -33,8 +33,9 @@ namespace ConsoleBankApp
             2. Withdrawl Funds.
             3. Check Balance.
             4. Create New Account
-            5. Log out
-            6. Exit
+            5. Change Password
+            6. Log out
+            7. Exit
             ";
             Console.WriteLine(operationYoucanPerform);
         }

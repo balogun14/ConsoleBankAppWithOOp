@@ -60,11 +60,14 @@ namespace ConsoleBankApp
                         NewAccountCreation.CreateNewAccount();
                         break;
                     case 5:
-                        condition = false;
+                        account.ChangeUserPassword();
                         break;
                     case 6:
-                        HelperFunctions.MessageWithColor("You exited Succesfully");
                         condition = false;
+                        break;
+                    case 7:
+                    HelperFunctions.MessageWithColor("You exited Succesfully");
+                    condition = false;
                         break;
                     default:
                         HelperFunctions.MessageWithColor("Option Not Available", ConsoleColor.DarkRed);
